@@ -40,3 +40,11 @@ setState(state => {
 ```
 
 More at https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33697
+
+## Using an array for component state
+
+Not supported right now, but will not fail with a reasonable error either.
+
+https://github.com/facebook/react/issues/15177
+
+After `setState` with an array update (`setState(state => [...state, { new: true }])`), the state _array_ (which is completely fine settable to in the constructor `this.state = []` and not caught by the TypeScript typings, nor in the `setState` return type) silently gets converted to a state _object_, which then of course lacks `map`, `length` and all that.
